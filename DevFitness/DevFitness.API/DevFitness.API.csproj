@@ -9,8 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\InputModels\" />
-    <Folder Include="Models\ViewModels\" />
     <Folder Include="Persistence\" />
   </ItemGroup>
 
