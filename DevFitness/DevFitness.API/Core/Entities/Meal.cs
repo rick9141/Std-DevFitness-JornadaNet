@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DevFitness.API.Core.Entities
 {
@@ -18,8 +15,6 @@ namespace DevFitness.API.Core.Entities
         public string Description { get; private set; }
         public int Calories { get; private set; }
         public DateTime Date { get; private set; }
-
         public int UserId { get; private set; }
-
     }
 }
