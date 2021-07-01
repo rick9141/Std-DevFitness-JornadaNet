@@ -3,6 +3,6 @@
     public class UpdateUserInputModel
     {
         public decimal Height { get; set; }
-        public int Weight { get; set; }
+        public decimal Weight { get; set; }
     }
 }

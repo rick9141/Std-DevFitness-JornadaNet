@@ -21,5 +21,11 @@ namespace DevFitness.API.Core.Entities
         public DateTime BirthDate { get; private set; }
 
         public IEnumerable<Meal> Meals { get; private set; }
+
+        public void Update(decimal height, decimal weight)
+        {
+            Height = height;
+            Weight = weight;
+        }
     }
 }
