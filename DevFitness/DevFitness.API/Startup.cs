@@ -1,18 +1,15 @@
 using DevFitness.API.Persistence;
+using DevFitness.API.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
 
 namespace DevFitness.API
 {
@@ -28,13 +25,29 @@ namespace DevFitness.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(UserProfile));
+
             var connectionString = Configuration.GetConnectionString("DevFitnessCs");
 
             services.AddDbContext<DevFitnessDbContext>(options => options.UseSqlServer(connectionString));
+            //services.AddDbContext<DevFitnessDbContext>(options => options.UseInMemoryDatabase("DevFitness"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DevFitness.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "DevFitness.API",
+                    Version = "v1",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Luis Henrique",
+                        Url = new Uri("https://github.com/rick9141")
+                    }
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
         }
 

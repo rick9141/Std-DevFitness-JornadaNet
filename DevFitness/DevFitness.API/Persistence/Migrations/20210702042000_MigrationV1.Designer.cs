@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevFitness.API.Persistence.Migrations
 {
     [DbContext(typeof(DevFitnessDbContext))]
-    [Migration("20210701160653_MigrationV1")]
+    [Migration("20210702042000_MigrationV1")]
     partial class MigrationV1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
